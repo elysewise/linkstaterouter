@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -7,9 +6,9 @@ public class Router {
 	private String ROUTERMODE;
 	private String ROUTERIDENTITY;
 	private int PORT;
-	FileManager fileManager = new FileManager();
-	Interpreter interpreter = new Interpreter();
-    LinkedList<String[]> neighbours = new LinkedList<String[]>();
+	private FileManager fileManager = new FileManager();
+	private Interpreter interpreter = new Interpreter();
+    private LinkedList<String[]> neighbours = new LinkedList<String[]>();
 	
 	
 	public Router(String[] args){
@@ -84,7 +83,7 @@ public class Router {
 	}
 
         private void successful() {
-            System.out.println("SUCCESSULY ADDED ROUTER:");
+            System.out.println("SUCCESSFULLY ADDED ROUTER:");
             System.out.println("--> Identity: "+ROUTERIDENTITY);
             System.out.println("--> Mode:     "+ROUTERMODE);
             System.out.println("--> Port:     "+PORT);
@@ -108,6 +107,10 @@ public class Router {
 	public String getMode() {
 		return this.ROUTERMODE;
 	}
+
+        public LinkedList<String[]> getNeighbours() {
+            return neighbours;
+        }
 	
 	private void exit(int status) {
 		System.out.println("Ending execution of program...");

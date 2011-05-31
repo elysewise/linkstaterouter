@@ -9,12 +9,20 @@
  */
 public class GraphNode {
 
-    final String identifier;
-    final int port;
+    private final String identifier;
+    private final int port;
 
     public GraphNode(String id, int port) {
         this.identifier = id;
         this.port = port;
+    }
+    
+    public String getID() {
+    	return this.identifier;
+    }
+    
+    public int getPort() {
+    	return this.port;
     }
 
     public void printNodeInfo() {

@@ -14,11 +14,28 @@ public class GraphLink {
     int cost;
 
     public GraphLink(GraphNode a, GraphNode b, int cost) {
-        this.a = a;
-        this.b = b;
-        this.cost = cost;
+        
+    	if(a.getID().charAt(0) > b.getID().charAt(0)) {
+    		this.a = b;
+    		this.b = a;
+    	}
+    	else {
+    		this.a = a;
+            this.b = b;
+            	
+    	}
+    	this.cost = cost;
     }
 
+    public GraphNode getA() {
+    	return a;
+    }
+    
+    public GraphNode getB() {
+    	return b;
+    }
+    
+    
     public int getCost() {
         return cost;
     }
@@ -42,10 +59,10 @@ public class GraphLink {
     }
     
     public void updateNode(GraphNode newNode) {
-    	if( newNode.identifier.equals(a)) {
+    	if( newNode.getID().equals(a)) {
     		a = newNode;
     	}
-    	else if( newNode.identifier.equals(b)) {
+    	else if( newNode.getID().equals(b)) {
     		b = newNode;
     	}
     }
