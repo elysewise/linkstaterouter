@@ -8,6 +8,5 @@ public class lsr {
             if(router != null) {
                 RouterWorker newRouterWorker = new RouterWorker(router);
             }
-
     }
 }

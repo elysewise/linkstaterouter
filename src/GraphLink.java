@@ -9,11 +9,11 @@
  */
 public class GraphLink {
 
-    String a;
-    String b;
+    GraphNode a;
+    GraphNode b;
     int cost;
 
-    public GraphLink(String a, String b, int cost) {
+    public GraphLink(GraphNode a, GraphNode b, int cost) {
         this.a = a;
         this.b = b;
         this.cost = cost;
@@ -23,20 +23,30 @@ public class GraphLink {
         return cost;
     }
 
-    public boolean matches (String target ) {
+    public boolean matches (GraphNode target ) {
         if( this.a.equals(target) || this.b.equals(target))
         {
         return true;
         }
         return false;
-}
-    public String getOtherID(String thisID) {
-        if(thisID.equals(a)) {
+    }
+    
+    public GraphNode getOtherNode(GraphNode thisNode) {
+        if(thisNode.equals(a)) {
             return b;
         }
-        if(thisID.equals(b)) {
+        if(thisNode.equals(b)) {
             return a;
         }
         return null;
+    }
+    
+    public void updateNode(GraphNode newNode) {
+    	if( newNode.identifier.equals(a)) {
+    		a = newNode;
+    	}
+    	else if( newNode.identifier.equals(b)) {
+    		b = newNode;
+    	}
     }
 }

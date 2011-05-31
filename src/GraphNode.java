@@ -9,8 +9,8 @@
  */
 public class GraphNode {
 
-    String identifier;
-    int port;
+    final String identifier;
+    final int port;
 
     public GraphNode(String id, int port) {
         this.identifier = id;
