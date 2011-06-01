@@ -115,6 +115,8 @@ InetAddress local;
 			return;
 		}
 		System.out.println("RUNNING DIJKSTRA...");
+		this.addFromCache();
+		RouterRecords.printBroadcasts();
 	}
 
 	/**
@@ -153,6 +155,7 @@ InetAddress local;
 	public void flood() {
 		System.out.println("FLOODING...");
 		LinkedList<GraphNode> immediates= networkGraph.getImmediates(); 
+		System.out.println("there are "+immediates.size()+"immediates");
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
 			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());			
@@ -161,6 +164,8 @@ InetAddress local;
 				buf = broadcasts.get(j).getBytes();
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
+					System.out.println("I am sending : "+packet.getData());
+					System.out.println("To: "+packet.getPort());
 					RouterRecords.UDPsocket.send(packet);
 				}
 				catch(Exception e) {

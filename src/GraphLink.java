@@ -41,7 +41,7 @@ public class GraphLink {
     }
 
     public boolean matches (GraphNode target ) {
-        if( this.a.equals(target) || this.b.equals(target))
+        if( this.a.getID().equals(target.getID()) || this.b.getID().equals(target.getID()))
         {
         return true;
         }
