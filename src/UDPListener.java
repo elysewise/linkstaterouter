@@ -7,7 +7,8 @@ public class UDPListener {
 	Interpreter interpreter = new Interpreter();
 
 	public void run() {
-		
+		while(true) {
+			
 		try {
 			byte[] buf = new byte[256];
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -18,6 +19,7 @@ public class UDPListener {
 			// process input
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
 		}
 	}	
 }

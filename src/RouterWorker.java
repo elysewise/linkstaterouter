@@ -24,8 +24,8 @@ public class RouterWorker extends Thread{
 	static final int FIVE_SECONDS = 5000;
 	static final int ONE_MINUTE = 20000;
 InetAddress local;
-	static UDPListener udpListener;
-	static TCPListener tcpListener;
+	UDPListener udpListener = new UDPListener();
+	TCPListener tcpListener = new TCPListener();
 	boolean waitAnotherMin = false;
 	Timer floodTimer;
 	Timer dijkstraTimer;
@@ -63,7 +63,7 @@ InetAddress local;
 		try {
 			setup();
 			if(router.getMode().equals("add")) {
-				requestBootstrap(router.getNeighbours().get(0));
+			//	requestBootstrap(router.getNeighbours().get(0));
 			}
 			else if(router.getMode().equals("init")) {
 				waitAnotherMin = true;
@@ -127,31 +127,31 @@ InetAddress local;
 	 * @param nbr
 	 *            the neighbouring router that request will be sent to
 	 */
-	public void requestBootstrap(Neighbour nbr) {
-		System.out.println("router "+router.getID()+" requesting a bootstrap from "+nbr.getID());
-		Socket socket = socketManager.openTCPSocket(nbr.getPort());
-	//	socketManager.sendTCP(socket, "boostrap " + router.getID() + " "
-	//			+ router.getPort());
-		String sentence = null;
-		while (true) {
-			sentence = socketManager.receiveTCP(socket);
-			LinkedList<String> broadcast = interpreter
-					.stringToLinkedList(sentence);
-			if (broadcast.get(0).equals("broadcast")) {
-				broadcast.remove(0);
-				networkGraph.addInformation(interpreter
-						.linkedListToString(broadcast));
-			}
-			if(broadcast.get(0).equals("end")) {
-				try {
-					System.out.println("bootstrap complete.");
-					socket.close();
-				} catch (IOException e) {
-					e.printStackTrace(System.out);
-				}
-			}
-		}
-	}
+//	public void requestBootstrap(Neighbour nbr) {
+//		System.out.println("router "+router.getID()+" requesting a bootstrap from "+nbr.getID());
+//		Socket socket = socketManager.openTCPSocket(nbr.getPort());
+//	//	socketManager.sendTCP(socket, "boostrap " + router.getID() + " "
+//	//			+ router.getPort());
+//		String sentence = null;
+//		while (true) {
+//			sentence = socketManager.receiveTCP(socket);
+//			LinkedList<String> broadcast = interpreter
+//					.stringToLinkedList(sentence);
+//			if (broadcast.get(0).equals("broadcast")) {
+//				broadcast.remove(0);
+//				networkGraph.addInformation(interpreter
+//						.linkedListToString(broadcast));
+//			}
+//			if(broadcast.get(0).equals("end")) {
+//				try {
+//					System.out.println("bootstrap complete.");
+//					socket.close();
+//				} catch (IOException e) {
+//					e.printStackTrace(System.out);
+//				}
+//			}
+//		}
+//	}
 	
 	public void flood() {
 		System.out.println("FLOODING...");
