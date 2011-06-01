@@ -35,4 +35,10 @@ public class Interpreter {
         }
         return result;
     }
+    
+    public String packetDataToString(byte[] data) {
+    	String allData = new String(data);
+    	int newLength = allData.indexOf('\n');
+    	return (allData.substring(0,newLength));
+    }
 }

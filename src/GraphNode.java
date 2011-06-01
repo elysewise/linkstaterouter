@@ -10,27 +10,20 @@
 public class GraphNode {
 
     private final String identifier;
-
-    public GraphNode(String id) {
-        this.identifier = id;
-    }
+    private final int port;
     
-//    public GraphNode(String id, int port) {
-//    	this.identifier= id;
-//    	this.port = port;
-//    }
+    public GraphNode(String id, int port) {
+    	this.identifier= id;
+    	this.port = port;
+    }
     
     public String getID() {
     	return this.identifier;
     }
     
-//    public void setPort(int portNumber) {
-//    	this.port = portNumber;
-//    }
-//    
-//    public int getPort() {
-//    	return this.port;
-//    }
+    public int getPort() {
+    	return this.port;
+    }
     
     public String toString() {
     	return this.identifier;

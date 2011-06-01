@@ -11,17 +11,15 @@ public class NetworkGraph {
 	LinkedList<GraphLink> links;
 	LinkedList<GraphNode> nodes;
 	LinkedList<GraphNode> immediates;
-	LinkedList<String> broadcasts;
 	Interpreter interpreter = new Interpreter();
 	Random generator = new Random();
 	int sequenceNum = 0;
 
-	public NetworkGraph(String sourceID) {
-		this.sourceNode = new GraphNode(sourceID);
+	public NetworkGraph(Router router) {
+		this.sourceNode = new GraphNode(router.getID(), router.getPort());
 		links = new LinkedList<GraphLink>();
 		nodes = new LinkedList<GraphNode>();
 		immediates = new LinkedList<GraphNode>();
-		broadcasts = new LinkedList<String>();
 	}
 
 	public GraphNode getNode(String targetID) {
@@ -34,31 +32,32 @@ public class NetworkGraph {
 		return null;
 	}
 
-	// srcNodeID destNodeID cost
+	// sequence srcNodeID srcPort destNodeID destPort cost
 	public String addInformation(String message) {
 		String result = "";
-
+		try {	
 		LinkedList<String> broadcast = interpreter.stringToLinkedList(message);
-		GraphNode srcNode = new GraphNode(broadcast.get(0));
-		GraphNode destNode = new GraphNode(broadcast.get(1));
-		int cost = Integer.parseInt(broadcast.get(2));
+		String sequence = broadcast.get(0);
+		GraphNode srcNode = new GraphNode(broadcast.get(1), Integer.parseInt(broadcast.get(2)));
+		GraphNode destNode = new GraphNode(broadcast.get(3), Integer.parseInt(broadcast.get(4)));
+		int cost = Integer.parseInt(broadcast.get(5));
 		GraphLink mentionedLink = new GraphLink(srcNode, destNode, cost);
-		result = ("RECEIVED PACKET with identifier(" + destNode + ", " + cost
-				+ ") from router " + srcNode + "\n");
-		if (isExistingBroadcast(message)) {
-			return result + "\t already added so DROPPED\n";
+		result = ("RECEIVED PACKET with identifier(" + destNode + ", " + sequence
+				+ ") from router " + srcNode + '\n');
+		if (RouterRecords.isExistingBroadcast(sequence, destNode.getID())) {
+			return result + '\t' + "already added so DROPPED" +'\n';
 		}
-		broadcasts.add(message);
+		RouterRecords.broadcasts.add(message);
+		System.out.println("adding to broadcasts: "+message);
 		return result + addToGraph(srcNode, destNode, mentionedLink);
-
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return result + "detected packet corruption so DROPPED";
+		}
 	}
 
-	Boolean isExistingBroadcast(String bc) {
-		if (broadcasts.contains(bc))
-			return true;
-		else
-			return false;
-	}
+	
 
 	// needs to handle immediates.
 	public String addToGraph(GraphNode nodeA, GraphNode nodeB,
@@ -68,19 +67,19 @@ public class NetworkGraph {
 		if (!alreadyInGraph(nodeA)) {
 			nodes.add(nodeA);
 			actions = actions
-					+ ("\t added new node " + nodeA.getID() + " to GRAPH\n");
+					+ ('\t'+" added new node " + nodeA.getID() + " to GRAPH" + '\n');
 			isNew = true;
 		}
 		if (!alreadyInGraph(nodeB)) {
 			nodes.add(nodeB);
 			actions = actions
-					+ ("\t added new node " + nodeB.getID() + " to GRAPH\n");
+			+ ('\t'+" added new node " + nodeB.getID() + " to GRAPH" + '\n');
 			isNew = true;
 		}
 		if (!alreadyInGraph(mentionedLink)) {
 			links.add(mentionedLink);
 			actions = actions
-					+ ("\t added link (" + nodeA.getID() + "," + nodeB.getID() + ") to GRAPH\n");
+					+ ('\t'+" added link (" + nodeA.getID() + "," + nodeB.getID() + ") to GRAPH" + '\n');
 			isNew = true;
 			if (mentionedLink.matches(sourceNode)) {
 				immediates.add(mentionedLink.getOtherNode(sourceNode));
@@ -91,9 +90,7 @@ public class NetworkGraph {
 		return actions;
 	}
 
-	public int getAndUseSequence() {
-		return sequenceNum ++;
-	}
+	
 	
 	private boolean alreadyInGraph(GraphNode n) {
 		for (int i = 0; i < nodes.size(); i++) {
@@ -118,15 +115,10 @@ public class NetworkGraph {
 		return false;
 	}
 
-	public LinkedList<String> getBroadcasts(String destID) {
-		LinkedList<String> relevantBroadcasts = new LinkedList<String>();
-		for (int i = 0; i < broadcasts.size(); i++) {
-			String bd = broadcasts.get(i);
-			if (!bd.substring(0, 1).equals(destID)) {
-				relevantBroadcasts.add(bd);
-			}
-		}
-		return relevantBroadcasts;
+	
+	
+	public LinkedList<GraphNode> getImmediates() {
+		return immediates;
 	}
 }
 // public boolean containsNode(GraphNode thisNode) {
