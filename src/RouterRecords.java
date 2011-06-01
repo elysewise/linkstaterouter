@@ -10,10 +10,8 @@ public class RouterRecords {
 	static Interpreter interpreter = new Interpreter();
 	static int sequenceNum = 0;
 	static LinkedList<String> broadcastsCache = new LinkedList<String>();
-	static DatagramSocket UDPsocket;
-	static ServerSocket TCPSocket;
-	static DatagramSocket FloodSendSocket;
-	static Socket BootstrapSendSocket;
+
+	
 
 	
 	

@@ -1,21 +1,32 @@
+import java.net.DatagramSocket;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
+
+
+
 
 public class lsr{
 
 	static Interpreter interpreter = new Interpreter();
 	static RouterWorker worker;
 	static Router router;
-	static UDPListener udpListener = new UDPListener();
-	static TCPListener tcpListener = new TCPListener();
-	
+	static UDPListener udpListener;
+	static TCPListener tcpListener;
+	static DatagramSocket udp;
+	static ServerSocket tcp;
 	
 	
 	public static void main(String[] args) {
 		try {
 			router = new Router(args);
+			
 			worker = new RouterWorker(router);
+		
 			RouterRecords.printBroadcasts();
+			
+			udpListener = new UDPListener(router.udpSocket);
+			tcpListener = new TCPListener(router.tcpSocket);
 			worker.start();
 			udpListener.start();
 			tcpListener.start();			

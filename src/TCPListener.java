@@ -2,20 +2,27 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
 public class TCPListener extends Thread {
 
+	ServerSocket welcomeSocket;
+	
+	public TCPListener (ServerSocket socket) {
+		this.welcomeSocket = socket;
+	}
+	
 	public void run() {
 
 		System.out.println("TCP IS RUNNING.");
 		while(true) {
-		Socket TCPSocket = null;
+		Socket socket = null;
 		try {
-			TCPSocket = RouterRecords.TCPSocket.accept();
-			handleRequest(TCPSocket);
-			closeSocket(TCPSocket);
+			socket = welcomeSocket.accept();
+			handleRequest(socket);
+			closeSocket(socket);
 			// process input
 		} catch (IOException e) {
 			e.printStackTrace();

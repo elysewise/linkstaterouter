@@ -13,6 +13,8 @@ public class Router {
 	private Interpreter interpreter = new Interpreter();
     private LinkedList<Neighbour> neighbours = new LinkedList<Neighbour>();
 	InetAddress local;
+	public DatagramSocket udpSocket;
+	public ServerSocket tcpSocket;
 	/**
 	 * construct a router given two args: mode , identifier
 	 * @param args the command line arguments used to establish router
@@ -31,9 +33,7 @@ public class Router {
 				throw new Exception();
 			}
 			LinkedList<String> configDetails = readConfigurationFile();
-			setSockets();
 			setConfiguration(configDetails);
-			
 			//start running of router
                         successful();
 		}
@@ -61,9 +61,16 @@ public class Router {
 		    }
             PORT = Integer.parseInt(firstLine.get(1));
                 //set up neighbours
+            System.out.println("PORT IS "+PORT);
+			udpSocket = new DatagramSocket(PORT);
+			
+			tcpSocket = new ServerSocket(PORT);
+			System.out.println("created udp socket on port: "+udpSocket.getLocalPort());
+		
            
             for(int i=3; i< configDetails.size(); i++) {
                 LinkedList<String> nbrDetails = interpreter.stringToLinkedList(configDetails.get(i));
+                System.out.println("neighburs " +nbrDetails);
                 String id = nbrDetails.get(0);
                 int port = Integer.parseInt(nbrDetails.get(1));
                 int cost = Integer.parseInt(nbrDetails.get(2));
@@ -126,12 +133,7 @@ public class Router {
             return neighbours;
         }
         
-        public void setSockets() throws Exception {	
-        	RouterRecords.UDPsocket =  new DatagramSocket(this.getPort());
-	    	RouterRecords.TCPSocket = new ServerSocket(this.getPort()) ;
-	    	RouterRecords.FloodSendSocket = new DatagramSocket();
-	    	System.out.println("udp and tcp sockets created successfully!");
-	    }
+       
         
         public InetAddress getLocal() {
         	return local;

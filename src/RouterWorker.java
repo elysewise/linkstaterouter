@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 import java.awt.event.ActionListener;
@@ -24,8 +26,6 @@ public class RouterWorker extends Thread{
 	static final int FIVE_SECONDS = 5000;
 	static final int ONE_MINUTE = 20000;
 InetAddress local;
-	UDPListener udpListener = new UDPListener();
-	TCPListener tcpListener = new TCPListener();
 	boolean waitAnotherMin = false;
 	Timer floodTimer;
 	Timer dijkstraTimer;
@@ -104,7 +104,6 @@ System.out.println("WORKER IS RUNNING.");
 			passBroadcastToGraph(interpreter.linkedListToString(broadcast));
 			passBroadcastToGraph(interpreter.linkedListToString(broadcast));
 		}
-		
 	}
 	
 	public void runDijkstra() {
@@ -162,7 +161,9 @@ System.out.println("WORKER IS RUNNING.");
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
-				buf = broadcasts.get(j).getBytes();
+				String data = broadcasts.get(j)+'\n';
+				
+				buf = Arrays.copyOf(data.getBytes(),buf.length);
 				
 				
 	//			System.out.println("immediate port is "+immediate.getPort());
@@ -171,7 +172,8 @@ System.out.println("WORKER IS RUNNING.");
 				try {
 		//			System.out.println("I am sending : "+new String(packet.getData()));
 			//		System.out.println("To: "+packet.getPort());
-					RouterRecords.FloodSendSocket.send(packet);
+					DatagramSocket socket = new DatagramSocket();
+					socket.send(packet);
 				}
 				catch(Exception e) {
 					e.printStackTrace(System.out);
