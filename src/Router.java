@@ -1,6 +1,7 @@
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.LinkedList;
 
 
@@ -128,7 +129,8 @@ public class Router {
         public void setSockets() throws Exception {	
         	RouterRecords.UDPsocket =  new DatagramSocket(this.getPort());
 	    	RouterRecords.TCPSocket = new ServerSocket(this.getPort()) ;
-	    	System.out.println("udp and tcp listening sockets created successfully!");
+	    	RouterRecords.FloodSendSocket = new DatagramSocket();
+	    	System.out.println("udp and tcp sockets created successfully!");
 	    }
         
         public InetAddress getLocal() {

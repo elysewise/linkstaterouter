@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.TimerTask;
 
 import javax.swing.Timer;
 
@@ -22,7 +21,7 @@ public class RouterWorker extends Thread{
 	Random generator = new Random();
 	LogManager logManager = null;
 	SocketManager socketManager;
-	static final int FIVE_SECONDS = 15000;
+	static final int FIVE_SECONDS = 5000;
 	static final int ONE_MINUTE = 20000;
 InetAddress local;
 	static UDPListener udpListener;
@@ -78,6 +77,9 @@ InetAddress local;
 			dijkstraTimer.start();
 			udpListener.run();
 			tcpListener.run();
+			while(true) {
+				
+			}
 		} catch (Exception e) {
 			System.out.println("RouterWorkerError");
 			e.printStackTrace(System.out);
@@ -158,26 +160,21 @@ InetAddress local;
 		
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-			System.out.println("immeidate is "+immediate);
+//			System.out.println("immediate is "+immediate);
 			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
 				buf = broadcasts.get(j).getBytes();
-				if(buf == null) {
-					System.out.println("buffer is null");
-				}
-				if(router.getLocal() == null) {
-					System.out.println("local is null");
-				}
 				
-					System.out.println("immediate port is "+immediate.getPort());
+				
+	//			System.out.println("immediate port is "+immediate.getPort());
 				
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
-					System.out.println("I am sending : "+new String(packet.getData()));
-					System.out.println("To: "+packet.getPort());
-					RouterRecords.UDPsocket.send(packet);
+		//			System.out.println("I am sending : "+new String(packet.getData()));
+			//		System.out.println("To: "+packet.getPort());
+					RouterRecords.FloodSendSocket.send(packet);
 				}
 				catch(Exception e) {
 					e.printStackTrace(System.out);

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class TCPListener {
 
 	public void run() {
+		while(true) {
 		Socket TCPSocket = null;
 		try {
 			TCPSocket = RouterRecords.TCPSocket.accept();
@@ -16,6 +17,7 @@ public class TCPListener {
 			// process input
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
 		}
 	}
 

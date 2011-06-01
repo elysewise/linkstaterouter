@@ -1,5 +1,6 @@
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.LinkedList;
 
 
@@ -11,6 +12,8 @@ public class RouterRecords {
 	static LinkedList<String> broadcastsCache = new LinkedList<String>();
 	static DatagramSocket UDPsocket;
 	static ServerSocket TCPSocket;
+	static DatagramSocket FloodSendSocket;
+	static Socket BootstrapSendSocket;
 
 	
 	

@@ -29,9 +29,7 @@ public class GraphNode {
     	return this.identifier;
     }
     
-    public boolean equals(GraphNode other) {
-    	
-    	
+    public boolean equals(GraphNode other) {  	
     	if(other.getID().equals(this.getID())) {
     	return true;
     	}
