@@ -115,6 +115,8 @@ InetAddress local;
 			return;
 		}
 		System.out.println("RUNNING DIJKSTRA...");
+		this.addFromCache();
+		RouterRecords.printBroadcasts();
 	}
 
 	/**
@@ -161,6 +163,8 @@ InetAddress local;
 				buf = broadcasts.get(j).getBytes();
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
+					System.out.println("I am sending : "+packet.getData());
+					System.out.println("To: "+packet.getPort());
 					RouterRecords.UDPsocket.send(packet);
 				}
 				catch(Exception e) {
