@@ -23,8 +23,8 @@ public class RouterWorker extends Thread{
 	Random generator = new Random();
 	LogManager logManager = null;
 	SocketManager socketManager;
-	static final int FIVE_SECONDS = 5000;
-	static final int ONE_MINUTE = 10000;
+	static final int FIVE_SECONDS = 15000;
+	static final int ONE_MINUTE = 20000;
 InetAddress local;
 	static UDPListener udpListener;
 	static TCPListener tcpListener;
