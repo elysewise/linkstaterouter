@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.LinkedList;
 
 
@@ -8,9 +7,14 @@ public class Router {
 	private int PORT;
 	private FileManager fileManager = new FileManager();
 	private Interpreter interpreter = new Interpreter();
-    private LinkedList<String[]> neighbours = new LinkedList<String[]>();
+    private LinkedList<Neighbour> neighbours = new LinkedList<Neighbour>();
 	
 	
+    
+	/**
+	 * construct a router given two args: mode , identifier
+	 * @param args the command line arguments used to establish router
+	 */
 	public Router(String[] args){
 		
 		// extract info from args
@@ -35,6 +39,13 @@ public class Router {
 		}
 	}
 	
+	/**
+	 * Set 
+	 * the configuration details of router from config file information
+	 * Set neighbour router objects
+	 * @param configDetails
+	 * @throws Exception
+	 */
 	private void setConfiguration(LinkedList<String> configDetails) throws Exception {
 
             LinkedList<String> firstLine = interpreter.stringToLinkedList(configDetails.get(0));
@@ -47,20 +58,12 @@ public class Router {
                 //set up neighbours
            
             for(int i=3; i< configDetails.size(); i++) {
-                 String[] nbrEntry = new String[3];
                 LinkedList<String> nbrDetails = interpreter.stringToLinkedList(configDetails.get(i));
-                nbrEntry[0] = nbrDetails.get(0);
-                nbrEntry[1] = nbrDetails.get(1);
-                nbrEntry[2] = nbrDetails.get(2);
-                neighbours.add(nbrEntry);
-             //   System.out.println("Added neighbour entry: "+ Arrays.toString(nbrEntry));
+                String id = nbrDetails.get(0);
+                int port = Integer.parseInt(nbrDetails.get(1));
+                int cost = Integer.parseInt(nbrDetails.get(2));
+                neighbours.add(new Neighbour(id,port,cost));
             }
-//            System.out.println("there are "+neighbours.size()+" neighbours");
-//        	System.out.println("neighbours are: ");
-//        	for(int j =0; j< neighbours.size(); j++) {
-//        		System.out.println(neighbours.get(j)[0]+" "+ neighbours.get(j)[1]+" "+ neighbours.get(j)[2]);
-//        	}
-        	
             if(neighbours.size() != Integer.parseInt(configDetails.get(2).substring(0,1))) {
 
             	System.out.println("problem is: neighbour numbers don't match");
@@ -68,12 +71,15 @@ public class Router {
             }
 	}
 
+	/**
+	 * attempt to read config file into a linked list of strings.
+	 * handles exceptions for file not found etc.
+	 * @return LinkedList<String> configuration file contents
+	 */
 	private LinkedList<String> readConfigurationFile() {
 		LinkedList<String> configDetails = null;
 		try {
 		configDetails = fileManager.readFile("config_"+ROUTERIDENTITY+".txt");
-               // System.out.println("config file found: "+configDetails);
-		
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -82,17 +88,20 @@ public class Router {
 		return configDetails;
 	}
 
+	
+        /**
+         * Print router information to inform user of successful initialisation of router
+         */
         private void successful() {
-            System.out.println("SUCCESSFULLY ADDED ROUTER:");
+            System.out.println("SUCCESSFULLY INITIALISED ROUTER:");
             System.out.println("--> Identity: "+ROUTERIDENTITY);
             System.out.println("--> Mode:     "+ROUTERMODE);
             System.out.println("--> Port:     "+PORT);
 
             System.out.println("Neighbours: " + neighbours.size());
                 for(int i =0; i< neighbours.size(); i++) {
-
-                    String[] nbr = neighbours.get(i);
-                    System.out.println("--> "+Arrays.toString(nbr));
+                    String nbr = neighbours.get(i).getID();
+                    System.out.println("--> "+nbr);
                 }
             }
         
@@ -108,10 +117,14 @@ public class Router {
 		return this.ROUTERMODE;
 	}
 
-        public LinkedList<String[]> getNeighbours() {
+        public LinkedList<Neighbour> getNeighbours() {
             return neighbours;
         }
 	
+	/**
+	 * Inform user of program termination, then exit program.
+	 * @param status the status for program to exit with
+	 */
 	private void exit(int status) {
 		System.out.println("Ending execution of program...");
 		System.exit(status);
