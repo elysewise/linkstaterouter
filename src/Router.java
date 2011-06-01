@@ -1,3 +1,6 @@
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.util.LinkedList;
 
 
@@ -8,9 +11,7 @@ public class Router {
 	private FileManager fileManager = new FileManager();
 	private Interpreter interpreter = new Interpreter();
     private LinkedList<Neighbour> neighbours = new LinkedList<Neighbour>();
-	
-	
-    
+	InetAddress local;
 	/**
 	 * construct a router given two args: mode , identifier
 	 * @param args the command line arguments used to establish router
@@ -19,6 +20,7 @@ public class Router {
 		
 		// extract info from args
 		try {
+			local = InetAddress.getLocalHost();
 			ROUTERMODE = args[0].toLowerCase();
 			if(!ROUTERMODE.equals("init") && !ROUTERMODE.equals("add")) {
 				throw new Exception();
@@ -28,13 +30,15 @@ public class Router {
 				throw new Exception();
 			}
 			LinkedList<String> configDetails = readConfigurationFile();
+			setSockets();
 			setConfiguration(configDetails);
+			
 			//start running of router
                         successful();
 		}
 		catch (Exception e) {
 			System.out.print("Initialisation Error: ");
-			System.out.println(e);
+			e.printStackTrace(System.out);
 			exit(-1);
 		}
 	}
@@ -120,7 +124,17 @@ public class Router {
         public LinkedList<Neighbour> getNeighbours() {
             return neighbours;
         }
-	
+        
+        public void setSockets() throws Exception {	
+        	RouterRecords.UDPsocket =  new DatagramSocket(this.getPort());
+	    	RouterRecords.TCPSocket = new ServerSocket(this.getPort()) ;
+	    	System.out.println("udp and tcp listening sockets created successfully!");
+	    }
+        
+        public InetAddress getLocal() {
+        	return local;
+        }
+        
 	/**
 	 * Inform user of program termination, then exit program.
 	 * @param status the status for program to exit with
