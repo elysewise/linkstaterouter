@@ -1,0 +1,412 @@
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 8:48:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 8:49:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:04:49 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:09:38 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:16:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:18:30 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:19:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:19:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:19:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:19:06 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:19:07 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:19:07 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:20:46 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:21:51 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:23:01 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:26:02 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:26:03 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:26:03 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:28:13 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:28:13 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:28:13 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:28:16 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:28:43 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:28:43 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:28:43 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:28:47 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+ but was redundant information so DROPPED
+Jun 1, 2011 9:31:04 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:31:04 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:31:04 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:31:05 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:31:34 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:31:39 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:32:18 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	 added new node u to GRAPH
+	 added new node v to GRAPH
+	 added link (u,v) to GRAPH
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 0) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	 added new node w to GRAPH
+	 added link (u,w) to GRAPH
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 1) from router u
+	already added so DROPPED
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	 added new node x to GRAPH
+	 added link (u,x) to GRAPH
+
+Jun 1, 2011 9:47:17 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router u
+	already added so DROPPED
+

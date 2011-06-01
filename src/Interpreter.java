@@ -39,6 +39,6 @@ public class Interpreter {
     public String packetDataToString(byte[] data) {
     	String allData = new String(data);
     	int newLength = allData.indexOf('\n');
-    	return (allData.substring(0,newLength));
+    	return (allData.substring(0,newLength-1));
     }
 }

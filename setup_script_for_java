@@ -1,0 +1,6 @@
+xterm -hold -title "Router u" -e "java lsr init u" &
+xterm -hold -title "Router v" -e "java lsr init v" &
+xterm -hold -title "Router w" -e "java lsr init w" &
+xterm -hold -title "Router x" -e "java lsr init x" &
+xterm -hold -title "Router y" -e "java lsr init y" &
+xterm -hold -title "Router z" -e "java lsr init z" &

@@ -1,0 +1,41 @@
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(u, 0) from router w
+	 added new node w to GRAPH
+	 added new node u to GRAPH
+	 added link (w,u) to GRAPH
+
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(u, 0) from router w
+ but was redundant information so DROPPED
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 1) from router w
+	 added new node v to GRAPH
+	 added link (w,v) to GRAPH
+
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(v, 1) from router w
+ but was redundant information so DROPPED
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router w
+	 added new node x to GRAPH
+	 added link (w,x) to GRAPH
+
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 2) from router w
+ but was redundant information so DROPPED
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(y, 3) from router w
+	 added new node y to GRAPH
+	 added link (w,y) to GRAPH
+
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(y, 3) from router w
+ but was redundant information so DROPPED
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(z, 4) from router w
+	 added new node z to GRAPH
+	 added link (w,z) to GRAPH
+
+Jun 1, 2011 6:21:22 PM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(z, 4) from router w
+ but was redundant information so DROPPED

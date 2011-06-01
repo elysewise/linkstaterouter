@@ -16,7 +16,6 @@ import javax.swing.Timer;
  * @author elysewise z3308940
  */
 public class RouterWorker extends Thread{
-
 	Router router;
 	NetworkGraph networkGraph;
 	Interpreter interpreter = new Interpreter();
@@ -156,16 +155,27 @@ InetAddress local;
 		System.out.println("FLOODING...");
 		LinkedList<GraphNode> immediates= networkGraph.getImmediates(); 
 		System.out.println("there are "+immediates.size()+"immediates");
+		
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
+			System.out.println("immeidate is "+immediate);
 			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
 				buf = broadcasts.get(j).getBytes();
+				if(buf == null) {
+					System.out.println("buffer is null");
+				}
+				if(router.getLocal() == null) {
+					System.out.println("local is null");
+				}
+				
+					System.out.println("immediate port is "+immediate.getPort());
+				
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
-					System.out.println("I am sending : "+packet.getData());
+					System.out.println("I am sending : "+new String(packet.getData()));
 					System.out.println("To: "+packet.getPort());
 					RouterRecords.UDPsocket.send(packet);
 				}
