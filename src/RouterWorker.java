@@ -25,7 +25,7 @@ public class RouterWorker extends Thread{
 	SocketManager socketManager;
 	static final int FIVE_SECONDS = 5000;
 	static final int ONE_MINUTE = 10000;
-	InetAddress local;
+InetAddress local;
 	static UDPListener udpListener;
 	static TCPListener tcpListener;
 	boolean waitAnotherMin = false;
@@ -155,11 +155,10 @@ public class RouterWorker extends Thread{
 		LinkedList<GraphNode> immediates= networkGraph.getImmediates(); 
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());
-			
+			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());			
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
-				broadcasts.get(j).getBytes();
+				buf = broadcasts.get(j).getBytes();
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
 					RouterRecords.UDPsocket.send(packet);
