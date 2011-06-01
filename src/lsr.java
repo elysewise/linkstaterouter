@@ -6,7 +6,9 @@ public class lsr{
 	static Interpreter interpreter = new Interpreter();
 	static RouterWorker worker;
 	static Router router;
-
+	static UDPListener udpListener = new UDPListener();
+	static TCPListener tcpListener = new TCPListener();
+	
 	
 	
 	public static void main(String[] args) {
@@ -14,9 +16,9 @@ public class lsr{
 			router = new Router(args);
 			worker = new RouterWorker(router);
 			RouterRecords.printBroadcasts();
-			worker.run();
-			
-			
+			worker.start();
+			udpListener.start();
+			tcpListener.start();			
 			
 			
 		} catch (Exception e) {

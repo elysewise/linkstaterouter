@@ -59,7 +59,7 @@ InetAddress local;
 	}
 
 	public void run() {
-
+System.out.println("WORKER IS RUNNING.");
 		try {
 			setup();
 			if(router.getMode().equals("add")) {
@@ -71,12 +71,9 @@ InetAddress local;
 			// wait random time 0-5 seconds
 			Thread.sleep(getRandomWaitTime());
 			RouterRecords.printBroadcasts();
-			udpListener = new UDPListener();
-			tcpListener = new TCPListener();
 			floodTimer.start();
 			dijkstraTimer.start();
-			udpListener.run();
-			tcpListener.run();
+			
 			while(true) {
 				
 			}

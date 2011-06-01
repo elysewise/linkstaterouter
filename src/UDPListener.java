@@ -1,12 +1,14 @@
 import java.io.IOException;
 import java.net.DatagramPacket;
 
-public class UDPListener {
+public class UDPListener extends Thread{
 
 	
 	Interpreter interpreter = new Interpreter();
 
 	public void run() {
+
+		System.out.println("UDP IS RUNNING.");
 		while(true) {
 			
 		try {

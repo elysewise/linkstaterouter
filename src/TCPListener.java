@@ -5,9 +5,11 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.LinkedList;
 
-public class TCPListener {
+public class TCPListener extends Thread {
 
 	public void run() {
+
+		System.out.println("TCP IS RUNNING.");
 		while(true) {
 		Socket TCPSocket = null;
 		try {
