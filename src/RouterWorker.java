@@ -158,7 +158,7 @@ InetAddress local;
 		System.out.println("there are "+immediates.size()+"immediates");
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());	
+			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
