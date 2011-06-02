@@ -30,7 +30,7 @@ public class LogManager {
 
 	public void addToLog(String data) {
 		try {
-			logger.log(Level.INFO, data);
+	//		logger.log(Level.INFO, data);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
