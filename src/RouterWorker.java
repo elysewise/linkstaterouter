@@ -50,7 +50,7 @@ InetAddress local;
 	                   flood();
 	               }
 	           });
-	           dijkstraTimer = new Timer(FIVE_SECONDS*4, new ActionListener() {
+	           dijkstraTimer = new Timer(FIVE_SECONDS, new ActionListener() {
 	               public void actionPerformed(ActionEvent event) {
 	                   runDijkstra();
 	               }
@@ -114,6 +114,7 @@ System.out.println("WORKER IS RUNNING.");
 	}
 	
 	public void runDijkstra() {
+		NetworkGraph network = networkGraph;	//take copy so that updates from other threads can still occur
 		if(waitAnotherMin) {
 			waitAnotherMin = false;
 			return;
@@ -121,6 +122,85 @@ System.out.println("WORKER IS RUNNING.");
 		System.out.println("RUNNING DIJKSTRA...");
 		this.addFromCache();
 		RouterRecords.printBroadcasts();
+		
+		final int TRUE = 1;
+		final int FALSE = 0;
+		final int NOTSET = -1;
+		int[] D = network.getD();
+		String[] names = network.getNames();
+		int numberOfNodes = names.length;
+		int srcIndex = NOTSET;
+		int destIndex = NOTSET;
+		int[] parents = new int[numberOfNodes];
+		Arrays.fill(parents, NOTSET);
+		int[] closed = new int[numberOfNodes];
+		Arrays.fill(closed, FALSE);
+		Boolean finished = false;
+		
+		//get index for start
+		for(int i=0; i< names.length; i++) {
+			if(names[i].equals(router.getID())) {
+				srcIndex = i;
+			}
+		}
+		
+		closed[srcIndex] = TRUE;
+		
+		//Initialise D[] with values from source
+		for(int i=0; i< numberOfNodes; i++) {
+			D[i] = network.cost(names[srcIndex], names[i]);
+			if(D[i] != Integer.MAX_VALUE) {
+				parents[i] = srcIndex;
+			}
+		}
+		System.out.println("INITIAL ALGORITHM VALUES: ");
+		System.out.println("names     "+ Arrays.toString(names));
+		System.out.println("leastcost "+Arrays.toString(D));
+		System.out.println("parents   "+Arrays.toString(parents));
+		System.out.println("closed    "+Arrays.toString(closed));
+		
+		while(!finished) {
+		
+		//find index of smallest value in d which is not closed.
+		destIndex = NOTSET;
+		for(int i=0; i< numberOfNodes; i++) {
+			if(closed[i] == FALSE) {
+				if(destIndex == NOTSET) {
+					destIndex = i;
+				}
+				else if( D[i] < D[destIndex]) {
+					destIndex = i;
+				}
+			}
+		}
+		
+		if(destIndex == NOTSET) {
+			finished = true;
+		}
+		
+		else {
+		closed[destIndex] = TRUE;
+		
+	//update D[] with any shorter paths found
+		for(int i=0; i< numberOfNodes; i++) {
+			int oldCost = D[i];
+			int newCost = D[destIndex] + network.cost(names[srcIndex], names[destIndex]);
+			if(newCost < oldCost) {
+				D[i] = newCost;
+				parents[i] = parents[srcIndex];
+			}
+		}	
+		}
+	}
+		
+		System.out.println("FINAL ALGORITHM VALUES: ");
+		System.out.println("names     "+ Arrays.toString(names));
+		System.out.println("leastcost "+Arrays.toString(D));
+		System.out.println("parents   "+Arrays.toString(parents));
+		System.out.println("closed    "+Arrays.toString(closed));
+	
+		
+		
 	}
 
 	/**

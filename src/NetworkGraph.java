@@ -91,7 +91,27 @@ public class NetworkGraph {
 		return actions;
 	}
 
+	public int[] getD() {
+		int[] D = new int[nodes.size()];
+		return D;
+	}
 	
+	public String[] getNames() {
+		String[] names = new String[nodes.size()];
+		for(int i=0; i<nodes.size(); i++) {
+			names[i] = nodes.get(i).getID();
+		}
+		return names;
+	}
+	
+	public int cost(String aID, String bID) {
+		for(int i=0; i< links.size(); i++) {
+			if(links.get(i).matches(aID,bID)) {
+				return links.get(i).getCost();
+			}
+		}
+		return Integer.MAX_VALUE;
+	}
 	
 	private boolean alreadyInGraph(GraphNode n) {
 		for (int i = 0; i < nodes.size(); i++) {

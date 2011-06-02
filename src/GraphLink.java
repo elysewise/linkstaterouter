@@ -15,15 +15,9 @@ public class GraphLink {
 
     public GraphLink(GraphNode a, GraphNode b, int cost) {
         
-    	if(a.getID().charAt(0) > b.getID().charAt(0)) {
-    		this.a = b;
-    		this.b = a;
-    	}
-    	else {
     		this.a = a;
-            this.b = b;
-            	
-    	}
+    		this.b = b;
+    	
     	this.cost = cost;
     }
 
@@ -42,6 +36,14 @@ public class GraphLink {
 
     public boolean matches (GraphNode target ) {
         if( this.a.getID().equals(target.getID()) || this.b.getID().equals(target.getID()))
+        {
+        return true;
+        }
+        return false;
+    }
+    
+    public boolean matches (String aID, String bID) {
+        if( this.a.getID().equals(aID) && this.b.getID().equals(bID))
         {
         return true;
         }
