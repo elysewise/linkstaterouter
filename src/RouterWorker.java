@@ -16,7 +16,7 @@ import javax.swing.Timer;
  * 
  * @author elysewise z3308940
  */
-public class RouterWorker extends Thread{
+public class RouterWorker extends Thread {
 	Router router;
 	NetworkGraph networkGraph;
 	Interpreter interpreter = new Interpreter();
@@ -25,18 +25,18 @@ public class RouterWorker extends Thread{
 	SocketManager socketManager;
 	static final int FIVE_SECONDS = 5000;
 	static final int ONE_MINUTE = 60000;
-InetAddress local;
+	InetAddress local;
 	boolean waitAnotherMin = false;
 	Timer floodTimer;
 	Timer dijkstraTimer;
 	Timer timeoutTimer;
-	
+
 	/**
 	 * constructor for RouterWorker.
 	 * 
 	 * @param router
 	 *            the router object that this class will be working on
-	 * @throws SocketException 
+	 * @throws SocketException
 	 */
 	public RouterWorker(Router router) throws Exception {
 		this.router = router;
@@ -44,34 +44,32 @@ InetAddress local;
 		logManager = new LogManager(router.getID());
 		local = InetAddress.getLocalHost();
 		socketManager = new SocketManager(router);
-		
-	           floodTimer = new Timer(FIVE_SECONDS, new ActionListener() {
-	               public void actionPerformed(ActionEvent event) {
-	                   flood();
-	               }
-	           });
-	           dijkstraTimer = new Timer(FIVE_SECONDS, new ActionListener() {
-	               public void actionPerformed(ActionEvent event) {
-	                   runDijkstra();
-	               }
-	           });
-	           timeoutTimer = new Timer(ONE_MINUTE*2, new ActionListener() {
-	        	   public void actionPerformed(ActionEvent event) {
-	        		   System.exit(0);
-	        	   }
-	           });
-		
-		
+
+		floodTimer = new Timer(FIVE_SECONDS, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				flood();
+			}
+		});
+		dijkstraTimer = new Timer(FIVE_SECONDS, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				runDijkstra();
+			}
+		});
+		timeoutTimer = new Timer(ONE_MINUTE * 2, new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				System.exit(0);
+			}
+		});
+
 	}
 
 	public void run() {
-System.out.println("WORKER IS RUNNING.");
+		System.out.println("WORKER IS RUNNING.");
 		try {
 			setup();
-			if(router.getMode().equals("add")) {
-			//	requestBootstrap(router.getNeighbours().get(0));
-			}
-			else if(router.getMode().equals("init")) {
+			if (router.getMode().equals("add")) {
+				// requestBootstrap(router.getNeighbours().get(0));
+			} else if (router.getMode().equals("init")) {
 				waitAnotherMin = true;
 			}
 			// wait random time 0-5 seconds
@@ -80,8 +78,8 @@ System.out.println("WORKER IS RUNNING.");
 			floodTimer.start();
 			dijkstraTimer.start();
 			timeoutTimer.start();
-			while(true) {
-				
+			while (true) {
+
 			}
 		} catch (Exception e) {
 			System.out.println("RouterWorkerError");
@@ -112,21 +110,23 @@ System.out.println("WORKER IS RUNNING.");
 			passBroadcastToGraph(interpreter.linkedListToString(broadcast));
 		}
 	}
-	
+
 	public void runDijkstra() {
-		NetworkGraph network = networkGraph;	//take copy so that updates from other threads can still occur
-		if(waitAnotherMin) {
+		NetworkGraph network = networkGraph; // take copy so that updates from
+												// other threads can still occur
+		if (waitAnotherMin) {
 			waitAnotherMin = false;
 			return;
 		}
 		System.out.println("RUNNING DIJKSTRA...");
 		this.addFromCache();
 		RouterRecords.printBroadcasts();
-		
+		final int INFINITY = Integer.MAX_VALUE;
 		final int TRUE = 1;
 		final int FALSE = 0;
 		final int NOTSET = -1;
 		int[] D = network.getD();
+		Arrays.fill(D, INFINITY);
 		String[] names = network.getNames();
 		int numberOfNodes = names.length;
 		int srcIndex = NOTSET;
@@ -136,71 +136,77 @@ System.out.println("WORKER IS RUNNING.");
 		int[] closed = new int[numberOfNodes];
 		Arrays.fill(closed, FALSE);
 		Boolean finished = false;
-		
-		//get index for start
-		for(int i=0; i< names.length; i++) {
-			if(names[i].equals(router.getID())) {
-				srcIndex = i;
+
+		System.out.println("CURRENT ALGORITHM VALUES: ");
+		System.out.println("names     " + Arrays.toString(names));
+		System.out.println("leastcost " + Arrays.toString(D));
+		System.out.println("parents   " + Arrays.toString(parents));
+		System.out.println("closed    " + Arrays.toString(closed));
+
+		// get index for start
+		for (int x = 0; x < numberOfNodes; x++) {
+			if (names[x].equals(router.getID())) {
+				srcIndex = x;
 			}
 		}
-		
-		closed[srcIndex] = TRUE;
-		
-		//Initialise D[] with values from source
-		for(int i=0; i< numberOfNodes; i++) {
+
+		// Initialise D[] with values from source
+		for (int i = 0; i < numberOfNodes; i++) {
 			D[i] = network.cost(names[srcIndex], names[i]);
-			if(D[i] != Integer.MAX_VALUE) {
+			if (D[i] != Integer.MAX_VALUE) {
 				parents[i] = srcIndex;
 			}
 		}
-		System.out.println("INITIAL ALGORITHM VALUES: ");
-		System.out.println("names     "+ Arrays.toString(names));
-		System.out.println("leastcost "+Arrays.toString(D));
-		System.out.println("parents   "+Arrays.toString(parents));
-		System.out.println("closed    "+Arrays.toString(closed));
-		
-		while(!finished) {
-		
-		//find index of smallest value in d which is not closed.
-		destIndex = NOTSET;
-		for(int i=0; i< numberOfNodes; i++) {
-			if(closed[i] == FALSE) {
-				if(destIndex == NOTSET) {
-					destIndex = i;
+
+		D[srcIndex] = 0;
+
+		while (!finished) {
+
+			// find index of smallest value in d which is not closed.
+			srcIndex = NOTSET;
+			for (int j = 0; j < numberOfNodes; j++) {
+				if (closed[j] == FALSE) {
+					if (srcIndex == NOTSET) {
+						srcIndex = j;
+					} else if (D[j] < D[srcIndex]) {
+						srcIndex = j;
+					}
 				}
-				else if( D[i] < D[destIndex]) {
-					destIndex = i;
+			}
+
+			if (srcIndex == NOTSET) {
+				finished = true;
+			}
+
+			else {
+			System.out.println("CURRENT ALGORITHM VALUES: ");
+			System.out.println("names     " + Arrays.toString(names));
+			System.out.println("leastcost " + Arrays.toString(D));
+			System.out.println("parents   " + Arrays.toString(parents));
+			System.out.println("closed    " + Arrays.toString(closed));
+
+			closed[srcIndex] = TRUE;
+
+			// update D[] with any shorter paths found
+			for (int j = 0; j < numberOfNodes; j++) {
+				int oldCost = D[j];
+				if(oldCost == INFINITY) {
+					
+				}
+				int newCost = D[srcIndex]
+						+ network.cost(names[srcIndex], names[j]);
+				if (newCost < oldCost) {
+					D[j] = newCost;
+					parents[j] = parents[srcIndex];
 				}
 			}
 		}
-		
-		if(destIndex == NOTSET) {
-			finished = true;
 		}
-		
-		else {
-		closed[destIndex] = TRUE;
-		
-	//update D[] with any shorter paths found
-		for(int i=0; i< numberOfNodes; i++) {
-			int oldCost = D[i];
-			int newCost = D[destIndex] + network.cost(names[srcIndex], names[destIndex]);
-			if(newCost < oldCost) {
-				D[i] = newCost;
-				parents[i] = parents[srcIndex];
-			}
-		}	
-		}
-	}
-		
 		System.out.println("FINAL ALGORITHM VALUES: ");
-		System.out.println("names     "+ Arrays.toString(names));
-		System.out.println("leastcost "+Arrays.toString(D));
-		System.out.println("parents   "+Arrays.toString(parents));
-		System.out.println("closed    "+Arrays.toString(closed));
-	
-		
-		
+		System.out.println("names     " + Arrays.toString(names));
+		System.out.println("leastcost " + Arrays.toString(D));
+		System.out.println("parents   " + Arrays.toString(parents));
+		System.out.println("closed    " + Arrays.toString(closed));
 	}
 
 	/**
@@ -210,71 +216,70 @@ System.out.println("WORKER IS RUNNING.");
 	 * @param nbr
 	 *            the neighbouring router that request will be sent to
 	 */
-//	public void requestBootstrap(Neighbour nbr) {
-//		System.out.println("router "+router.getID()+" requesting a bootstrap from "+nbr.getID());
-//		Socket socket = socketManager.openTCPSocket(nbr.getPort());
-//	//	socketManager.sendTCP(socket, "boostrap " + router.getID() + " "
-//	//			+ router.getPort());
-//		String sentence = null;
-//		while (true) {
-//			sentence = socketManager.receiveTCP(socket);
-//			LinkedList<String> broadcast = interpreter
-//					.stringToLinkedList(sentence);
-//			if (broadcast.get(0).equals("broadcast")) {
-//				broadcast.remove(0);
-//				networkGraph.addInformation(interpreter
-//						.linkedListToString(broadcast));
-//			}
-//			if(broadcast.get(0).equals("end")) {
-//				try {
-//					System.out.println("bootstrap complete.");
-//					socket.close();
-//				} catch (IOException e) {
-//					e.printStackTrace(System.out);
-//				}
-//			}
-//		}
-//	}
-	
+	// public void requestBootstrap(Neighbour nbr) {
+	// System.out.println("router "+router.getID()+" requesting a bootstrap from "+nbr.getID());
+	// Socket socket = socketManager.openTCPSocket(nbr.getPort());
+	// // socketManager.sendTCP(socket, "boostrap " + router.getID() + " "
+	// // + router.getPort());
+	// String sentence = null;
+	// while (true) {
+	// sentence = socketManager.receiveTCP(socket);
+	// LinkedList<String> broadcast = interpreter
+	// .stringToLinkedList(sentence);
+	// if (broadcast.get(0).equals("broadcast")) {
+	// broadcast.remove(0);
+	// networkGraph.addInformation(interpreter
+	// .linkedListToString(broadcast));
+	// }
+	// if(broadcast.get(0).equals("end")) {
+	// try {
+	// System.out.println("bootstrap complete.");
+	// socket.close();
+	// } catch (IOException e) {
+	// e.printStackTrace(System.out);
+	// }
+	// }
+	// }
+	// }
+
 	public void flood() {
 		System.out.println("FLOODING...");
 		addFromCache();
-		LinkedList<GraphNode> immediates= networkGraph.getImmediates(); 
-		System.out.println("there are "+immediates.size()+"immediates");
-		
-		for(int i=0;i< immediates.size(); i++) {
+		LinkedList<GraphNode> immediates = networkGraph.getImmediates();
+		System.out.println("there are " + immediates.size() + "immediates");
+
+		for (int i = 0; i < immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());	
-			if(broadcasts!= null) {
-			for(int j=0; j< broadcasts.size(); j++) {
-				byte[] buf = new byte[256];
-				String data = broadcasts.get(j);
-				buf = Arrays.copyOf(data.getBytes(), buf.length);
-				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
-				try {
-		//			System.out.println("I am sending : "+new String(packet.getData()));
-			//		System.out.println("To: "+packet.getPort());
-					DatagramSocket socket = new DatagramSocket();
-					socket.send(packet);
+			LinkedList<String> broadcasts = RouterRecords
+					.getBroadCastsWithFilter(immediate.getID());
+			if (broadcasts != null) {
+				for (int j = 0; j < broadcasts.size(); j++) {
+					byte[] buf = new byte[256];
+					String data = broadcasts.get(j);
+					buf = Arrays.copyOf(data.getBytes(), buf.length);
+					DatagramPacket packet = new DatagramPacket(buf, buf.length,
+							router.getLocal(), immediate.getPort());
+					try {
+						// System.out.println("I am sending : "+new
+						// String(packet.getData()));
+						// System.out.println("To: "+packet.getPort());
+						DatagramSocket socket = new DatagramSocket();
+						socket.send(packet);
+					} catch (Exception e) {
+						e.printStackTrace(System.out);
+					}
 				}
-				catch(Exception e) {
-					e.printStackTrace(System.out);
-				}
-			}
 			}
 		}
 	}
-	
+
 	void addFromCache() {
-		LinkedList<String> cache = RouterRecords.broadcastsCache; 
-		//System.out.println("adding "+cache.size()+" broadcasts from cache");
-		for(int i=0; i< cache.size(); i++) {
+		LinkedList<String> cache = RouterRecords.broadcastsCache;
+		// System.out.println("adding "+cache.size()+" broadcasts from cache");
+		for (int i = 0; i < cache.size(); i++) {
 			this.passBroadcastToGraph(cache.get(i));
 		}
 	}
-	
-
-	
 
 	/**
 	 * pass a string to the graph and record the result in a log.
@@ -297,8 +302,8 @@ System.out.println("WORKER IS RUNNING.");
 	 *            the content to be added to log
 	 */
 	private void writeToLog(String msg) {
-		//System.out.println(msg);
-	//	logManager.addToLog(msg);
+		// System.out.println(msg);
+		// logManager.addToLog(msg);
 	}
 
 	/**
