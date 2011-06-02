@@ -10,7 +10,7 @@ public class RouterRecords {
 	static Interpreter interpreter = new Interpreter();
 	static int sequenceNum = 0;
 	static LinkedList<String> broadcastsCache = new LinkedList<String>();
-
+	static int broadCastLength = broadcasts.get(0).length();
 	
 
 	
@@ -29,8 +29,22 @@ public class RouterRecords {
 		return relevantBroadcasts;
 	}
 	
-	public static int getAndUseSequence() {
-		return sequenceNum ++;
+	public static String getAndUseSequence() {
+		String sequence ="";
+		if(sequenceNum<10) {
+			sequence =("000"+sequenceNum);
+		}
+		else if(sequenceNum<100) {
+			sequence= ("00"+sequenceNum);
+		}
+		else if(sequenceNum<1000) {
+			sequence ="0"+sequenceNum;
+		}
+		else {
+			sequence = Integer.toString(sequenceNum);
+		}
+		sequenceNum++;
+		return sequence;
 	}
 	
 	static Boolean isExistingBroadcast(String sequence, String destNode) {

@@ -95,7 +95,7 @@ System.out.println("WORKER IS RUNNING.");
 		LinkedList<Neighbour> neighbours = router.getNeighbours();
 		for (int i = 0; i < neighbours.size(); i++) {
 			LinkedList<String> broadcast = new LinkedList<String>();
-			broadcast.add(Integer.toString(RouterRecords.getAndUseSequence()));
+			broadcast.add(RouterRecords.getAndUseSequence());
 			broadcast.add(router.getID());
 			broadcast.add(Integer.toString(router.getPort()));
 			broadcast.add(neighbours.get(i).getID());
@@ -161,11 +161,9 @@ System.out.println("WORKER IS RUNNING.");
 			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
-				byte[] buf = new byte[400];
-				String data = broadcasts.get(j)+'\n';
 				
-				buf = Arrays.copyOf(data.getBytes(),buf.length);
-				
+				String data = broadcasts.get(j);
+				byte[] buf = data.getBytes();
 				
 	//			System.out.println("immediate port is "+immediate.getPort());
 				
