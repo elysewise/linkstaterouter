@@ -37,19 +37,20 @@ public class NetworkGraph {
 		String result = "";
 		try {	
 		LinkedList<String> broadcast = interpreter.stringToLinkedList(message);
+		String source = broadcast.get(0);
 		String sequence = broadcast.get(0);
-		GraphNode srcNode = new GraphNode(broadcast.get(1), Integer.parseInt(broadcast.get(2)));
-		GraphNode destNode = new GraphNode(broadcast.get(3), Integer.parseInt(broadcast.get(4)));
+		GraphNode aNode = new GraphNode(broadcast.get(1), Integer.parseInt(broadcast.get(2)));
+		GraphNode bNode = new GraphNode(broadcast.get(3), Integer.parseInt(broadcast.get(4)));
 		int cost = Integer.parseInt(broadcast.get(5));
-		GraphLink mentionedLink = new GraphLink(srcNode, destNode, cost);
-		result = ("RECEIVED PACKET with identifier(" + destNode + ", " + sequence
-				+ ") from router " + srcNode + '\n');
-		if (RouterRecords.isExistingBroadcast(sequence, destNode.getID())) {
+		GraphLink mentionedLink = new GraphLink(aNode, bNode, cost);
+		result = ("RECEIVED PACKET with identifier(" + source + ", " + sequence
+				+ ") from router " + source + '\n');
+		if (RouterRecords.isExistingBroadcast(sequence, source)) {
 			return result + '\t' + "already added so DROPPED" +'\n';
 		}
 		RouterRecords.broadcasts.add(message);
 		System.out.println("adding to broadcasts: "+message);
-		return result + addToGraph(srcNode, destNode, mentionedLink);
+		return result + addToGraph(aNode, bNode, mentionedLink);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

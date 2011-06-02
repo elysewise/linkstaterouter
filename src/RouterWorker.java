@@ -95,6 +95,7 @@ System.out.println("WORKER IS RUNNING.");
 		LinkedList<Neighbour> neighbours = router.getNeighbours();
 		for (int i = 0; i < neighbours.size(); i++) {
 			LinkedList<String> broadcast = new LinkedList<String>();
+			broadcast.add(router.getID());
 			broadcast.add(RouterRecords.getAndUseSequence());
 			broadcast.add(router.getID());
 			broadcast.add(Integer.toString(router.getPort()));
