@@ -24,11 +24,12 @@ public class RouterWorker extends Thread{
 	LogManager logManager = null;
 	SocketManager socketManager;
 	static final int FIVE_SECONDS = 5000;
-	static final int ONE_MINUTE = 20000;
+	static final int ONE_MINUTE = 60000;
 InetAddress local;
 	boolean waitAnotherMin = false;
 	Timer floodTimer;
 	Timer dijkstraTimer;
+	Timer timeoutTimer;
 	
 	/**
 	 * constructor for RouterWorker.
@@ -49,10 +50,15 @@ InetAddress local;
 	                   flood();
 	               }
 	           });
-	           dijkstraTimer = new Timer(ONE_MINUTE, new ActionListener() {
+	           dijkstraTimer = new Timer(FIVE_SECONDS*4, new ActionListener() {
 	               public void actionPerformed(ActionEvent event) {
 	                   runDijkstra();
 	               }
+	           });
+	           timeoutTimer = new Timer(ONE_MINUTE*2, new ActionListener() {
+	        	   public void actionPerformed(ActionEvent event) {
+	        		   System.exit(0);
+	        	   }
 	           });
 		
 		
