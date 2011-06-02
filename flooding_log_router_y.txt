@@ -1,0 +1,28 @@
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 0) from router y
+	 added new node y to GRAPH
+	 added new node w to GRAPH
+	 added link (y,w) to GRAPH
+
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(w, 0) from router y
+	already added so DROPPED
+
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 1) from router y
+	 added new node x to GRAPH
+	 added link (y,x) to GRAPH
+
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(x, 1) from router y
+	already added so DROPPED
+
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(z, 2) from router y
+	 added new node z to GRAPH
+	 added link (y,z) to GRAPH
+
+Jun 2, 2011 8:56:11 AM LogManager addToLog
+INFO: RECEIVED PACKET with identifier(z, 2) from router y
+	already added so DROPPED
+

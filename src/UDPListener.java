@@ -20,11 +20,11 @@ public class UDPListener extends Thread{
 			
 		try {
 			System.out.println("UDP SOCKET IS ON: "+socket.getLocalPort());
-			byte[] buf = new byte[256];
+			byte[] buf = new byte[400];
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
 	this.socket.receive(packet);
 	String broadcast = interpreter.packetDataToString(packet.getData());
-			System.out.println("I received a BROADCAST: ");
+			System.out.println("I received a BROADCAST: "+broadcast);
 			RouterRecords.broadcastsCache.add(broadcast);
 			// process input
 		} catch (IOException e) {
