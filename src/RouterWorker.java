@@ -79,7 +79,7 @@ System.out.println("WORKER IS RUNNING.");
 			RouterRecords.printBroadcasts();
 			floodTimer.start();
 			dijkstraTimer.start();
-			
+			timeoutTimer.start();
 			while(true) {
 				
 			}
@@ -187,7 +187,7 @@ System.out.println("WORKER IS RUNNING.");
 	
 	void addFromCache() {
 		LinkedList<String> cache = RouterRecords.broadcastsCache; 
-		System.out.println("adding "+cache.size()+" broadcasts from cache");
+		//System.out.println("adding "+cache.size()+" broadcasts from cache");
 		for(int i=0; i< cache.size(); i++) {
 			this.passBroadcastToGraph(cache.get(i));
 		}

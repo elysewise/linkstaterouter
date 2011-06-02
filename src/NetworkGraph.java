@@ -49,7 +49,7 @@ public class NetworkGraph {
 			return result + '\t' + "already added so DROPPED" +'\n';
 		}
 		RouterRecords.broadcasts.add(message);
-		System.out.println("adding to broadcasts: "+message);
+	//	System.out.println("adding to broadcasts: "+message);
 		return result + addToGraph(aNode, bNode, mentionedLink);
 		}
 		catch(Exception e) {
