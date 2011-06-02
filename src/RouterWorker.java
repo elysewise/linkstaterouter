@@ -151,6 +151,7 @@ System.out.println("WORKER IS RUNNING.");
 	
 	public void flood() {
 		System.out.println("FLOODING...");
+		addFromCache();
 		LinkedList<GraphNode> immediates= networkGraph.getImmediates(); 
 		System.out.println("there are "+immediates.size()+"immediates");
 		
@@ -185,7 +186,9 @@ System.out.println("WORKER IS RUNNING.");
 	
 	void addFromCache() {
 		LinkedList<String> cache = RouterRecords.broadcastsCache; 
+		System.out.println("adding "+cache.size()+" broadcasts from cache");
 		for(int i=0; i< cache.size(); i++) {
+			
 			networkGraph.addInformation(cache.get(i));
 		}
 	}
