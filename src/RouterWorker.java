@@ -218,7 +218,7 @@ System.out.println("WORKER IS RUNNING.");
 	 */
 	private void writeToLog(String msg) {
 		//System.out.println(msg);
-		logManager.addToLog(msg);
+	//	logManager.addToLog(msg);
 	}
 
 	/**
