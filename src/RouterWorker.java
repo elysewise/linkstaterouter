@@ -212,7 +212,7 @@ System.out.println("WORKER IS RUNNING.");
 	 *            the content to be added to log
 	 */
 	private void writeToLog(String msg) {
-		
+		System.out.println(msg);
 		logManager.addToLog(msg);
 	}
 
