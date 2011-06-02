@@ -10,7 +10,7 @@ public class RouterRecords {
 	static Interpreter interpreter = new Interpreter();
 	static int sequenceNum = 0;
 	static LinkedList<String> broadcastsCache = new LinkedList<String>();
-	static int broadCastLength = broadcasts.get(0).length();
+	static int broadcastLength;
 	
 
 	
@@ -58,6 +58,7 @@ public class RouterRecords {
 	}
 	
 	static void printBroadcasts() {
+		
 		System.out.println("ALL BROADCASTS:");
 			for(int i=0; i< broadcasts.size(); i++) {
 				System.out.println(broadcasts.get(i));

@@ -165,8 +165,6 @@ System.out.println("WORKER IS RUNNING.");
 				String data = broadcasts.get(j);
 				byte[] buf = data.getBytes();
 				
-	//			System.out.println("immediate port is "+immediate.getPort());
-				
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
 		//			System.out.println("I am sending : "+new String(packet.getData()));
