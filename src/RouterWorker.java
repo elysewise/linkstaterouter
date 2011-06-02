@@ -161,10 +161,9 @@ System.out.println("WORKER IS RUNNING.");
 			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
-				
+				byte[] buf = new byte[256];
 				String data = broadcasts.get(j);
-				byte[] buf = data.getBytes();
-				
+				buf = Arrays.copyOf(data.getBytes(), buf.length);
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, router.getLocal(), immediate.getPort());
 				try {
 		//			System.out.println("I am sending : "+new String(packet.getData()));
