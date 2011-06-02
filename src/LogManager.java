@@ -19,6 +19,7 @@ public class LogManager {
 			fh = new FileHandler(logFile, true);
 			logger.addHandler(fh);
 			logger.setLevel(Level.INFO);
+			logger.setUseParentHandlers(false);
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 		} catch (Exception e) {
@@ -29,7 +30,7 @@ public class LogManager {
 
 	public void addToLog(String data) {
 		try {
-		//	logger.log(Level.INFO, data);
+			logger.log(Level.INFO, data);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
