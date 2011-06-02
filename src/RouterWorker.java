@@ -158,7 +158,7 @@ System.out.println("WORKER IS RUNNING.");
 		
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
+			LinkedList<String> broadcasts = RouterRecords.getBroadCastsWithFilter(immediate.getID());	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {
 				byte[] buf = new byte[256];
@@ -183,7 +183,6 @@ System.out.println("WORKER IS RUNNING.");
 		LinkedList<String> cache = RouterRecords.broadcastsCache; 
 		System.out.println("adding "+cache.size()+" broadcasts from cache");
 		for(int i=0; i< cache.size(); i++) {
-			
 			this.passBroadcastToGraph(cache.get(i));
 		}
 	}
@@ -212,7 +211,7 @@ System.out.println("WORKER IS RUNNING.");
 	 *            the content to be added to log
 	 */
 	private void writeToLog(String msg) {
-		System.out.println(msg);
+		//System.out.println(msg);
 		logManager.addToLog(msg);
 	}
 
