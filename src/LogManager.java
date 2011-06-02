@@ -18,7 +18,7 @@ public class LogManager {
 			FileHandler fh;
 			fh = new FileHandler(logFile, true);
 			logger.addHandler(fh);
-			logger.setLevel(Level.ALL);
+			logger.setLevel(Level.INFO);
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 		} catch (Exception e) {
@@ -35,5 +35,4 @@ public class LogManager {
 			e.printStackTrace();
 		}
 	}
-
 }
