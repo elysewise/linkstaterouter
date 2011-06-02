@@ -17,6 +17,7 @@ public class Interpreter {
         StringTokenizer token = new StringTokenizer(data);
         while (token.hasMoreTokens()) {
             words.add(token.nextToken());
+        	
         }
         return words;
     }

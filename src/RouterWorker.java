@@ -158,7 +158,6 @@ System.out.println("WORKER IS RUNNING.");
 		
 		for(int i=0;i< immediates.size(); i++) {
 			GraphNode immediate = immediates.get(i);
-//			System.out.println("immediate is "+immediate);
 			LinkedList<String> broadcasts = RouterRecords.broadcasts;	
 			if(broadcasts!= null) {
 			for(int j=0; j< broadcasts.size(); j++) {

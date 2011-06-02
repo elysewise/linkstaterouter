@@ -71,16 +71,13 @@ public class Router {
             for(int i=3; i< configDetails.size(); i++) {
                 LinkedList<String> nbrDetails = interpreter.stringToLinkedList(configDetails.get(i));
                 System.out.println("neighburs " +nbrDetails);
+                if(!nbrDetails.equals(null) && !nbrDetails.isEmpty()) {
                 String id = nbrDetails.get(0);
                 int port = Integer.parseInt(nbrDetails.get(1));
                 int cost = Integer.parseInt(nbrDetails.get(2));
                 neighbours.add(new Neighbour(id,port,cost));
-            }
-            if(neighbours.size() != Integer.parseInt(configDetails.get(2).substring(0,1))) {
-
-            	System.out.println("problem is: neighbour numbers don't match");
-            	throw new Exception();
-            }
+                }
+                }
 	}
 
 	/**
