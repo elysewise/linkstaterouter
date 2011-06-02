@@ -184,7 +184,7 @@ System.out.println("WORKER IS RUNNING.");
 		System.out.println("adding "+cache.size()+" broadcasts from cache");
 		for(int i=0; i< cache.size(); i++) {
 			
-			networkGraph.addInformation(cache.get(i));
+			this.passBroadcastToGraph(cache.get(i));
 		}
 	}
 	
