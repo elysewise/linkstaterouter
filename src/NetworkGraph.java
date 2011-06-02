@@ -38,14 +38,14 @@ public class NetworkGraph {
 		try {	
 		LinkedList<String> broadcast = interpreter.stringToLinkedList(message);
 		String source = broadcast.get(0);
-		String sequence = broadcast.get(0);
-		GraphNode aNode = new GraphNode(broadcast.get(1), Integer.parseInt(broadcast.get(2)));
-		GraphNode bNode = new GraphNode(broadcast.get(3), Integer.parseInt(broadcast.get(4)));
-		int cost = Integer.parseInt(broadcast.get(5));
+		String sequence = broadcast.get(1);
+		GraphNode aNode = new GraphNode(broadcast.get(2), Integer.parseInt(broadcast.get(3)));
+		GraphNode bNode = new GraphNode(broadcast.get(4), Integer.parseInt(broadcast.get(5)));
+		int cost = Integer.parseInt(broadcast.get(6));
 		GraphLink mentionedLink = new GraphLink(aNode, bNode, cost);
 		result = ("RECEIVED PACKET with identifier(" + source + ", " + sequence
 				+ ") from router " + source + '\n');
-		if (RouterRecords.isExistingBroadcast(sequence, source)) {
+		if (RouterRecords.isExistingBroadcast(source, sequence)) {
 			return result + '\t' + "already added so DROPPED" +'\n';
 		}
 		RouterRecords.broadcasts.add(message);

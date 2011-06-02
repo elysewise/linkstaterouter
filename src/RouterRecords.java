@@ -47,10 +47,10 @@ public class RouterRecords {
 		return sequence;
 	}
 	
-	static Boolean isExistingBroadcast(String sequence, String destNode) {
+	static Boolean isExistingBroadcast(String source, String sequence) {
 		for(int i=0; i< broadcasts.size(); i++) {
 			LinkedList<String> broadcast = interpreter.stringToLinkedList(broadcasts.get(i));
-			if(broadcast.get(0).equals(sequence)&&(broadcast.get(3).equals(destNode))) {
+			if(broadcast.get(0).equals(source)&&(broadcast.get(1).equals(sequence))) {
 				return true;
 			}
 		}
